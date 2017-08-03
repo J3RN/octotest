@@ -145,44 +145,31 @@ var catImages = [
 $(document).ready(function() {
     $("#game-holder").hide();
     $("#begin-game").click(beginGame);
-    $(document).keypress(function(e) {
-        if (!gameRunning)
-            return;
-
-        switch (e.originalEvent.key) {
-        case ' ':
-            $("#octocat-name").html(catName);
-            resultEntryAllowed = true;
-            break;
-        case 'y':
-            if (resultEntryAllowed) {
+    $("#name-guess").keypress(function(e) {
+        if (e.originalEvent.key == "Enter") {
+            if ($("#name-guess").val().toLowerCase() == catName) {
                 correctGuesses++;
-                totalGuesses++;
-                loadNextOctocat();
             }
-            break;
-        case 'n':
-            if (resultEntryAllowed) {
-                totalGuesses++;
-                loadNextOctocat();
-            }
-            break;
+            totalGuesses++;
+            loadNextOctocat();
         }
     });
 });
 
 function loadNextOctocat() {
-    resultEntryAllowed = false;
-
     $("#progress").html(correctGuesses + "/" + totalGuesses);
 
-    if (catIndex >= catImages.length) {
+    if (catIndex >= 100) {
         endGame();
     } else {
-        $("#octocat-image").attr("src", "cats/" + catImages[catIndex]);
-        catName = catImages[catIndex].replace(/\.(png|jpg|gif)/, '');
+        $("octocat-name").show();
 
-        $("#octocat-name").html(catName.replace(/./g, '&nbsp;'));
+        $("#name-guess").val("")
+        $("#name-guess").show();
+
+        $("#octocat-image").attr("src", "cats/" + catImages[catIndex]);
+        catName = catImages[catIndex].replace(/\.(png|jpg|gif)/, '').toLowerCase();
+
         catIndex++;
     }
 }
@@ -200,6 +187,7 @@ function beginGame() {
 
     $("#splash-holder").hide();
     $("#game-holder").show();
+    $("#name-guess").focus();
 }
 
 function shuffle(a) {
