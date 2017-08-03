@@ -1,0 +1,43 @@
+html, body {
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Helvetica', sans-serif;
+}
+
+#octocat-name {
+    text-decoration: underline;
+}
+
+#splash-holder, #game-holder {
+    text-align: center;
+}
+
+#begin-game {
+    font-size: 1.5em;
+    color: #EEE;
+    border: .5px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background: rgba(0, 160, 60, .75);
+    cursor: pointer;
+}
+
+#begin-game:hover {
+    background: rgba(0, 160, 60, 1.0);
+}
+
+#octocat-image, #splash-image {
+    height: 75vmin;
+}
+
+header {
+    font-size: 30px;
+    font-weight: lighter;
+    line-height: 50px;
+    background: #F3F3F3;
+}
+
+#name-holder {
+    padding-top: 10px;
+}
